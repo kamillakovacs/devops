@@ -74,5 +74,5 @@ typings/
 .serverless
 
 # Key files
-.pem
+*.pem
 
