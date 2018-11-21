@@ -6,25 +6,9 @@ variable "AWS_SECRET_KEY" {}
 # Create a new instance of the latest Ubuntu 14.04 on an
 # t2.micro node with an AWS Tag naming it "HelloWorld"
 provider "aws" {
-  region = "eu-central-1"
+  region = "us-east-1"
   access_key = "${var.AWS_ACCESS_KEY}"
   secret_key = "${var.AWS_SECRET_KEY}"
-}
-
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
 }
 
 resource "aws_key_pair" "test-key" {
@@ -33,10 +17,11 @@ resource "aws_key_pair" "test-key" {
 }
 
 resource "aws_instance" "web" {
-  ami           = "ami-00259791f61937520"
-  instance_type = "t2.micro"  
-  key_name = "${aws_key_pair.test-key.key_name}"
-  tags {
-    Name = "Test Instance"
-  }
+ ami = "ami-0f9351b59be17920e"
+ instance_type = "t2.micro"
+ key_name = "${aws_key_pair.test-key.key_name}"
+
+ tags {
+   Name = "Checkout_Mattermost"
+ }
 }
