@@ -9,8 +9,8 @@ provider "aws" {
   secret_key = "${var.AWS_SECRET_KEY}"
 }
 
-resource "aws_key_pair" "test-key" {
-  key_name   = "test-key"
+resource "aws_key_pair" "mattermost-key" {
+  key_name   = "mattermost-key"
   public_key = "${var.PUBLIC_SSH_KEY}"
 }
 
